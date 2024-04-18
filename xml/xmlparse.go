@@ -1,4 +1,4 @@
-package main
+package xmlparse
 
 import (
 	"encoding/xml"
@@ -29,10 +29,10 @@ type OvalDefinitions struct {
 	} `xml:"definitions"`
 }
 
-func main() {
+func xmldownload(s OvalDefinitions) OvalDefinitions {
 	resp, _ := http.Get("https://redos.red-soft.ru/support/secure/redos.xml")
 	bytes, _ := io.ReadAll(resp.Body)
 	resp.Body.Close()
-	var s OvalDefinitions
 	xml.Unmarshal([]byte(bytes), &s)
+	return s
 }
