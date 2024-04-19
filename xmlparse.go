@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-type OvalDefinitions struct {
+type redosovalxml struct {
 	Definitions struct {
 		Definition []struct {
 			Metadata struct {
@@ -29,8 +29,10 @@ type OvalDefinitions struct {
 	} `xml:"definitions"`
 }
 
-func xmldownload(s OvalDefinitions) OvalDefinitions {
-	resp, _ := http.Get("https://redos.red-soft.ru/support/secure/redos.xml")
+var s redosovalxml
+
+func xmldownload(urlredxml string) redosovalxml {
+	resp, _ := http.Get(urlredxml)
 	bytes, _ := io.ReadAll(resp.Body)
 	resp.Body.Close()
 	xml.Unmarshal([]byte(bytes), &s)
