@@ -31,7 +31,7 @@ type redosovalxml struct {
 
 var s redosovalxml
 
-func xmldownload(urlredxml string) redosovalxml {
+func Xmldownload(urlredxml string) redosovalxml {
 	resp, _ := http.Get(urlredxml)
 	bytes, _ := io.ReadAll(resp.Body)
 	resp.Body.Close()
